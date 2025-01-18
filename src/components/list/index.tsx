@@ -7,7 +7,7 @@ import TitlePopover from '../title-popover';
 import { ProjectItem } from '../../types';
 import { PAGE_SIZES } from '../../constants';
 
-const List = ({ projects = [], paginationDetails, onPaginationChange }: { projects: ProjectItem[]; paginationDetails: { current: number; total: number, start: number, end: number; size: number }; onPaginationChange: (current: number, next: number, size: number) => void }) => {
+const List = ({ projects = [], paginationDetails, onPaginationChange, latestPageIntervals = [] }: { projects: ProjectItem[]; paginationDetails: { current: number; total: number, start: number, end: number; size: number }; onPaginationChange: (current: number, next: number, size: number) => void; latestPageIntervals: number[] }) => {
 
     const [isFirstPage, isLastPage] = [paginationDetails.current <= 1, paginationDetails.current === paginationDetails.total]
     const handleNextPaginationChange = () => {
@@ -92,9 +92,26 @@ const List = ({ projects = [], paginationDetails, onPaginationChange }: { projec
             </div>
             <div className='justify-between flex-row pagination-container '>
 
-                <span>
-                    {paginationDetails.current} <span>OF</span> {paginationDetails.total}
-                </span>
+                <div className='flex-row gap-2 align-center'>
+                    <div className='flex-row align-center gap-2' >
+                        {paginationDetails.current} <span> OF </span> {paginationDetails.total}
+                    </div>
+                    <div className='flex-row align-center gap-2 page-intervals'>
+                        {latestPageIntervals.map((page, ind) => (
+                            <>
+
+                                {ind === 4 ? <>
+                                    ....
+                                    <button onClick={() => onPaginationChange(paginationDetails.current, page, paginationDetails.size)} className='pagination-btn' >
+                                        {page}
+                                    </button>
+                                </> : <button onClick={() => onPaginationChange(paginationDetails.current, page, paginationDetails.size)} className='pagination-btn' >
+                                    {page}
+                                </button>}
+                            </>
+                        ))}
+                    </div>
+                </div>
                 <div className='flex-row align-center gap-2'>
                     <select value={paginationDetails.size} onChange={ev => onPaginationChange(1, 1, parseInt(ev.target.value))} >
                         {PAGE_SIZES.map(size => (

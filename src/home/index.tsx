@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react'
 import Header from '../components/header'
 import "./style.css"
-import { CircleDollarSign, FolderKanban, Group} from 'lucide-react';
+import { CircleDollarSign, FolderKanban, Group } from 'lucide-react';
 import List from '../components/list';
 import usePaginatedData from '../hooks/usePagination';
 import { ProjectItem } from '../types';
 
 function Home() {
 
-    const [{ data, paginatedData, currentPage, totalItems, start, end }, { setCurrentPage }] = usePaginatedData<ProjectItem>(5)
+    const [{ data, paginatedData, currentPage, totalItems, start, end, latestPageIntervals }, { setCurrentPage }] = usePaginatedData<ProjectItem>(5)
 
     const fetchNextItemsonPageChange = (current: number, next: number, size: number) => {
         setCurrentPage({ ...currentPage, no: next, itemsPerPage: size })
@@ -47,7 +47,7 @@ function Home() {
                         </div>
                     ))}
                 </div>
-                <List projects={paginatedData} paginationDetails={{ current: currentPage.no, size: currentPage.itemsPerPage, total: totalItems, start, end }} onPaginationChange={fetchNextItemsonPageChange} />
+                <List latestPageIntervals={latestPageIntervals} projects={paginatedData} paginationDetails={{ current: currentPage.no, size: currentPage.itemsPerPage, total: totalItems, start, end }} onPaginationChange={fetchNextItemsonPageChange} />
             </main>
         </div>
     )

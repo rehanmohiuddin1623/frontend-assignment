@@ -6,6 +6,15 @@
     align-items: center;
 
     
+    .align-center {
+        align-items: center;
+        width: max-content;
+    }
+
+    .page-intervals{
+        margin-left: var(--space-md);
+        gap: var(--space-md);
+    }
 
     .list-table {
         height: 40vh;
@@ -151,11 +160,7 @@ table {
         gap: var(--space-xs);
     }
 
-    .align-center {
-        align-items: center;
-        width: max-content;
-    }
-
+  
 
 
 

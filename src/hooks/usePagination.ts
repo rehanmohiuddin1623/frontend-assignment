@@ -72,7 +72,35 @@ const usePaginatedData = <T>(itemsPerPage: number = 10) => {
         }
     }, [fetchDetails.data, currentPage])
 
-    return [{ ...fetchDetails, currentPage, totalItems: Math.ceil(fetchDetails.data.length / currentPage.itemsPerPage) }, { setCurrentPage, fetchProjectsFromAPI }] as const
+    const totalItems = Math.ceil(fetchDetails.data.length / currentPage.itemsPerPage)
+
+    const getPageIntervals = () => {
+        const pages = [];
+        const totalPages = totalItems;
+        const startPage = Math.max(1, currentPage.no - 1);
+        const endPage = Math.min(totalPages, currentPage.no + 2);
+
+        for (let i = startPage; i <= endPage; i++) {
+            pages.push(i);
+        }
+
+        // Ensure we always return exactly 4 pages if possible
+        while (pages.length < 4 && pages[0] > 1) {
+            pages.unshift(pages[0] - 1);
+        }
+
+        while (pages.length < 4 && pages[pages.length - 1] < totalPages) {
+            pages.push(pages[pages.length - 1] + 1);
+        }
+
+        if (endPage !== totalPages) {
+            pages.push(totalPages)
+        }
+
+        return pages;
+    };
+
+    return [{ ...fetchDetails, currentPage, totalItems, latestPageIntervals: getPageIntervals() }, { setCurrentPage, fetchProjectsFromAPI }] as const
 
 }
 
