@@ -1,0 +1,167 @@
+.list-container {
+    color: var(--color-text-primary);
+    /* padding: var(--space-md); */
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    
+    .align-center {
+        align-items: center;
+        width: max-content;
+    }
+
+    .page-intervals{
+        margin-left: var(--space-md);
+        gap: var(--space-md);
+    }
+
+    .list-table {
+        height: 40vh;
+    }
+    .items-info{
+        width: 100%;
+        padding: var(--space-md);
+        padding-bottom: 0;
+        box-sizing: border-box;
+    }
+
+    .list-table,
+    .pagination-container {
+        width: 100%;
+        padding: var(--space-md);
+        box-sizing: border-box;
+
+        button:disabled {
+            background-color: var(--color-tertiary);
+            border: 1px solid var(--color-text-brand);
+            cursor: not-allowed;
+          }
+    }
+}
+
+.gap-2 {
+    gap: var(--space-xs);
+}
+
+.justify-between {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.pagination-btn {
+    background: var(--color-text-brand);
+    color: var(--color-text-primary);
+    box-shadow: var(--default-shadow);
+    outline: none;
+    border: 1px solid var(--color-text-muted);
+    cursor: pointer;
+}
+
+.pagination-container {
+    margin-top: var(--space-md);
+    width: 80%;
+    select{
+        padding: var(--space-xs);
+        outline: none;
+    }
+}
+
+table {
+    width: 100%;
+    font-size: 13px;
+
+    p-4 {
+        padding: 4px;
+    }
+
+    border-spacing: 0;
+
+    th,
+    td {
+        text-align: left;
+        width: 3s0%;
+    }
+
+    td:nth-child(1),
+    th:nth-child(1) {
+        width: 10%;
+    }
+
+    td:nth-child(2),
+    th:nth-child(2) {
+        max-width: 20%;
+    }
+
+    th,
+    td {
+        height: 3rem;
+        /* h-12 */
+        padding-left: 1rem;
+        /* px-4 */
+        padding-right: 1rem;
+        /* px-4 */
+        text-align: left;
+        /* text-left */
+        vertical-align: middle;
+        /* align-middle */
+        font-weight: 500;
+        /* font-medium */
+        color: var(--color-text-muted)
+    }
+
+    td {
+        color: var(--color-text-tertiary);
+    }
+
+    thead {
+        position: sticky;
+        background-color: rgb(13 15 16);
+    }
+
+    & tr {
+        border-bottom: 1px solid;
+    }
+
+    tr {
+        border-bottom: 1px solid;
+        /* border-b */
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+        /* transition-colors */
+    }
+
+    /* hover state */
+    tr:hover {
+        background-color: rgb(0 0 0 / 0.5);
+        /* hover:bg-muted/50 */
+    }
+
+    tbody {
+        tr:hover {
+            background: var(--color-text-brand);
+        }
+    }
+
+    /* selected state using data attribute */
+    &[data-state="selected"] {
+        background-color: hsl(0 0% 96.1%);
+        /* data-[state=selected]:bg-muted */
+    }
+
+    /* Cell Respective css  */
+    .user-by {
+        align-items: center;
+
+    }
+
+    .user-by,
+    .user {
+        font-size: 12px;
+        gap: var(--space-xs);
+    }
+
+  
+
+
+
+}
